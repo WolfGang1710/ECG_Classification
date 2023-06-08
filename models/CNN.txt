@@ -1,0 +1,20 @@
+Model: "model"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_1 (InputLayer)        [(None, 96, 1)]           0         
+                                                                 
+ conv1d (Conv1D)             (None, 96, 8)             32        
+                                                                 
+ max_pooling1d (MaxPooling1D  (None, 48, 8)            0         
+ )                                                               
+                                                                 
+ flatten (Flatten)           (None, 384)               0         
+                                                                 
+ dense (Dense)               (None, 2)                 770       
+                                                                 
+=================================================================
+Total params: 802
+Trainable params: 802
+Non-trainable params: 0
+_________________________________________________________________

@@ -4,14 +4,16 @@ _________________________________________________________________
 =================================================================
  input_2 (InputLayer)        [(None, 96, 1)]           0         
                                                                  
- simple_rnn (SimpleRNN)      (None, 96, 16)            288       
+ simple_rnn (SimpleRNN)      (None, 96, 5)             35        
                                                                  
- simple_rnn_1 (SimpleRNN)    (None, 16)                528       
+ simple_rnn_1 (SimpleRNN)    (None, 5)                 55        
                                                                  
- dense_1 (Dense)             (None, 2)                 34        
+ dense_1 (Dense)             (None, 2)                 12        
                                                                  
 =================================================================
-Total params: 850
-Trainable params: 850
+Total params: 102
+Trainable params: 102
 Non-trainable params: 0
 _________________________________________________________________
+L'accuracy sur l'ensemble du train est :0.8799999952316284
+L'accuracy sur l'ensemble du test est :0.7300000190734863

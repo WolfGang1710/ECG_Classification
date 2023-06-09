@@ -27,7 +27,7 @@ def cnn(x_train, y_train, x_test, y_test,
     :param out_activation: str ('relu', 'sigmoid', 'softmax', 'tanh', 'linear', 'elu', 'selu', 'softplus', 'softsign')
     :param nb_epochs: int
     :param batch_size: int
-    :return: loss_train_epochs, loss_val_epochs
+    :return: loss_train_epochs, loss_val_epochs, acc_train_epochs, acc_val_epochs, model
     """
     input_shape = x_train.shape[1:]
     input_layer = keras.layers.Input(input_shape)
@@ -97,7 +97,7 @@ def rnn(x_train, y_train, x_test, y_test,
     :param loss: str fonction de coût ('mean_squared_error', 'mean_absolute_error', 'mean_absolute_percentage_error', 'mean_squared_logarithmic_error', 'squared_hinge', 'hinge', 'categorical_hinge', 'logcosh', 'categorical_crossentropy', 'sparse_categorical_crossentropy', 'binary_crossentropy', 'kullback_leibler_divergence', 'poisson', 'cosine_proximity')
     :param optimizer: str fonction d'optimisation d'algorithme ('sgd', 'rmsprop', 'adagrad', 'adadelta', 'adam', 'adamax', 'nadam')
     :param monitor: str valeur à mesurer et contrôler ('val_loss', 'val_accuracy', 'loss', 'accuracy')
-    :return: loss_train_epochs, loss_val_epochs
+    :return: loss_train_epochs, loss_val_epochs, acc_train_epochs, acc_val_epochs, model
     """
     # Définition du modèle RNN
     input_layer = keras.layers.Input(shape=(x_train.shape[1], x_train.shape[2]))

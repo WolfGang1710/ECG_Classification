@@ -34,13 +34,15 @@ def preprocessing(x_train, y_train, x_test, y_test):
     :return: (x_train, y_train), (x_test, y_test) : tuple de tuples contenant les donnees d'entrainement et de test
     """
     print(f"Preprocessing des donnees.")
-
+    # Normalisation des donnees
     y_train = (y_train + 1) / 2
     y_test = (y_test + 1) / 2
 
+    # Redimensionnement des donnees
     x_train = x_train.reshape(x_train.shape[0], x_train.shape[1], 1)
     x_test = x_test.reshape(x_test.shape[0], x_test.shape[1], 1)
 
+    # Conversion des labels en one-hot vecteurs
     y_train = keras.utils.to_categorical(y_train, num_classes=2)
     y_test = keras.utils.to_categorical(y_test, num_classes=2)
 

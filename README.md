@@ -47,3 +47,33 @@ Merci de lancer la commande suivante dans un terminal :
 
 `python -m pip install --upgrade pip ; pip install -r requirements.txt`
 
+## Lancement du projet
+
+Dans le fichier main.py vous pouvez modifier les paramètres suivants :
+
+```python
+# Paramètres CNN
+# Ces paramètres possèdent des valeurs par défaut.
+convol_padding: str ('same' or 'valid')
+convol_stride: int
+convol_kernel_size: int
+convol_filters: int
+convol_activation: str ('relu', 'sigmoid', 'softmax', 'tanh', 'linear', 'elu', 'selu', 'softplus', 'softsign')
+pool_size: int
+pool_stride: int
+pool_padding: str ('same' or 'valid')
+nb_classes: int
+out_activation: str ('relu', 'sigmoid', 'softmax', 'tanh', 'linear', 'elu', 'selu', 'softplus', 'softsign')
+nb_epochs: int
+batch_size: int
+```
+
+```python
+# Paramètres RNN
+# Ces paramètres possèdent des valeurs par défaut.
+nb_neurons: int
+batch_size: int
+epochs: int
+loss: str fonction de coût ('mean_squared_error', 'mean_absolute_error', 'mean_absolute_percentage_error', 'mean_squared_logarithmic_error', 'squared_hinge', 'hinge', 'categorical_hinge', 'logcosh', 'categorical_crossentropy', 'sparse_categorical_crossentropy', 'binary_crossentropy', 'kullback_leibler_divergence', 'poisson', 'cosine_proximity')
+optimizer: str fonction d'optimisation d'algorithme ('sgd', 'rmsprop', 'adagrad', 'adadelta', 'adam', 'adamax', 'nadam')
+monitor: str valeur à mesurer et contrôler ('val_loss', 'val_accuracy', 'loss', 'accuracy')

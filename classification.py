@@ -1,15 +1,14 @@
-from keras.callbacks import ModelCheckpoint, CSVLogger
-from keras.optimizers import Adam
-from tensorflow import keras
-from numpy import sqrt
+# Description: Ce fichier contient les fonctions de classification
+from tensorflow import keras # Librairie de Deep Learning
+
 
 
 def cnn(x_train, y_train, x_test, y_test,
         convol_padding='same', convol_stride=1, convol_kernel_size=3,
-        convol_filters=8, convol_activation='relu',
+        convol_filters=5, convol_activation='relu',
         pool_size=2, pool_stride=2, pool_padding='valid',
         nb_classes=2, out_activation='softmax',
-        batch_size=256, nb_epochs=300):
+        batch_size=128, nb_epochs=300):
     """
 
     :param x_train:
@@ -40,10 +39,17 @@ def cnn(x_train, y_train, x_test, y_test,
     pooling_conv_layer_1 = keras.layers.MaxPooling1D(pool_size=pool_size,
                                                      strides=pool_stride,
                                                      padding=pool_padding)(hidden_conv_layer_1)
-    # Applattissement de la sortie du pooling
-    flattened_layer_1 = keras.layers.Flatten()(pooling_conv_layer_1)
 
-    output_layer = keras.layers.Dense(units=nb_classes, activation=out_activation)(flattened_layer_1)
+    hidden_conv_layer_2 = keras.layers.Conv1D(filters=convol_filters, padding='valid',
+                                              kernel_size=convol_kernel_size, strides=convol_stride,
+                                              activation=convol_activation)(pooling_conv_layer_1)
+    # créer le max pooling qui est liée à la convolution précédente
+    hidden_pooling_layer_2 = keras.layers.MaxPooling1D(pool_size=2, strides=2,
+                                                       padding='valid')(hidden_conv_layer_2)
+    # Applattissement de la sortie du pooling
+    flattened_layer = keras.layers.Flatten()(hidden_pooling_layer_2)
+
+    output_layer = keras.layers.Dense(units=nb_classes, activation=out_activation)(flattened_layer)
     model = keras.models.Model(inputs=input_layer, outputs=output_layer)
     print("==============================================")
     print("Modele cree ! ")
@@ -69,12 +75,14 @@ def cnn(x_train, y_train, x_test, y_test,
     history_dict = history.history
     loss_train_epochs = history_dict['loss']
     loss_val_epochs = history_dict['val_loss']
+    acc_train_epochs = history_dict['accuracy']
+    acc_val_epochs = history_dict['val_accuracy']
 
-    return loss_train_epochs, loss_val_epochs
+    return loss_train_epochs, loss_val_epochs, acc_train_epochs, acc_val_epochs, model
 
 
 def rnn(x_train, y_train, x_test, y_test,
-        nb_neurons=16, batch_size=256, epochs=300,
+        nb_neurons=5, batch_size=64, epochs=300,
         loss='mean_squared_error', optimizer='adam',
         monitor='val_loss'):
     """
@@ -102,7 +110,7 @@ def rnn(x_train, y_train, x_test, y_test,
     # Compilation du modèle
     cost_function = keras.losses.mean_squared_error
     optimizer_algo = keras.optimizers.Adam(learning_rate=0.001)
-    model.compile(loss=cost_function, optimizer=optimizer_algo)
+    model.compile(loss=cost_function, optimizer=optimizer_algo, metrics=['accuracy'])
 
     # Entraînement du modèle
     history = model.fit(x_train, y_train, batch_size=batch_size,
@@ -123,5 +131,7 @@ def rnn(x_train, y_train, x_test, y_test,
     history_dict = history.history
     loss_train_epochs = history_dict['loss']
     loss_val_epochs = history_dict['val_loss']
+    acc_train_epochs = history_dict['accuracy']
+    acc_val_epochs = history_dict['val_accuracy']
 
-    return loss_train_epochs, loss_val_epochs
+    return loss_train_epochs, loss_val_epochs, acc_train_epochs, acc_val_epochs, model

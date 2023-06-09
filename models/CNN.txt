@@ -4,17 +4,24 @@ _________________________________________________________________
 =================================================================
  input_1 (InputLayer)        [(None, 96, 1)]           0         
                                                                  
- conv1d (Conv1D)             (None, 96, 8)             32        
+ conv1d (Conv1D)             (None, 96, 5)             20        
                                                                  
- max_pooling1d (MaxPooling1D  (None, 48, 8)            0         
+ max_pooling1d (MaxPooling1D  (None, 48, 5)            0         
  )                                                               
                                                                  
- flatten (Flatten)           (None, 384)               0         
+ conv1d_1 (Conv1D)           (None, 46, 5)             80        
                                                                  
- dense (Dense)               (None, 2)                 770       
+ max_pooling1d_1 (MaxPooling  (None, 23, 5)            0         
+ 1D)                                                             
+                                                                 
+ flatten (Flatten)           (None, 115)               0         
+                                                                 
+ dense (Dense)               (None, 2)                 232       
                                                                  
 =================================================================
-Total params: 802
-Trainable params: 802
+Total params: 332
+Trainable params: 332
 Non-trainable params: 0
 _________________________________________________________________
+L'accuracy sur l'ensemble du train est :0.8299999833106995
+L'accuracy sur l'ensemble du test est :0.7400000095367432

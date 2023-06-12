@@ -1,0 +1,18 @@
+Avoir un dual boot unix (de préférence) sinon VMware
+
+dans le cas de VMware:
+risque de bug possible resolution (https://docs.docker.com/engine/install/linux-postinstall/):
+	sudo groupadd docker
+	sudo usermod -aG docker $USER
+	
+Faire une petite update des logiciels: sudo apt update
+
+installer docker : sudo apt install docker.io
+installer maven : sudo apt install maven
+
+Télecharger notre Zip,executer le preload("./preload" dans le terminale)
+une fois la bonne execution du preload aller dans le fichier apprentissage excuter:
+1. ./go
+2. installer docker-compose s'il ne l'est pas deja 
+3. docker-compose up
+

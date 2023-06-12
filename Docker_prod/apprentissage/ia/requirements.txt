@@ -1,0 +1,5 @@
+tensorflow-hub==0.12.0
+pillow==9.0.1
+flask
+pandas
+keras

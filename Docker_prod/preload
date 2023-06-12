@@ -1,0 +1,39 @@
+#!/bin/bash
+
+missing=""
+
+check () {
+   app="$1"
+   if whereis "${app}" | grep '/usr/bin' >/dev/null; then
+      echo "well done $app is installed"
+   else
+      echo "please do : sudo install $app"
+      missing="$missing $app"
+   fi
+}
+
+checkAll () {
+   check mvn
+   check docker
+
+   if [ ! -z "$missing" ]; then
+      echo "stop, some required apps are missing :  $missing"
+      exit 1
+   fi
+}
+
+preloadDockers () {
+   docker pull tensorflow/tensorflow:2.8.0
+   docker pull openjdk:11
+}
+
+dryMaven () {
+   unzip dry.zip
+   ( cd dry; mvn install)
+   rm -r dry 
+}
+
+checkAll
+preloadDockers
+dryMaven
+

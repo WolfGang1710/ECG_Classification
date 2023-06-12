@@ -49,6 +49,8 @@ Merci de lancer la commande suivante dans un terminal :
 
 ## Lancement du projet
 
+Pour éxecuter le code, il vous suffit de lance le main.py.
+
 Dans le fichier main.py vous pouvez modifier les paramètres suivants :
 
 ```python
